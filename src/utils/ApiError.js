@@ -1,8 +1,8 @@
 class ApiError extends Error {
-  constructor(status, message, stack = '', code = '') {
+  constructor(status, message,errors = [], stack = '', code = '') {
     super(message);
     this.status = status;
-    this.stack = stack;
+    this.errors = errors;
     this.success = false;
     this.code = code;
 
@@ -53,8 +53,8 @@ class ApiError extends Error {
     return new ApiError(429, message, errors);
   }
 
-  static customError (status, message, errors = []) {
-    return new ApiError(status, message, errors);
+  static customError (status, message, errors = [] , stack = '') {
+    return new ApiError(status, message, errors , stack);
   }
 
 }
